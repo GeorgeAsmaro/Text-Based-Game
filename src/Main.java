@@ -10,6 +10,15 @@ public class Main {
         System.out.println("Pick a number from 0-49");
         int oneToTen = 51;
         int random = rand.nextInt(10);
+        oneToTen = input.nextInt();
+        while(oneToTen != random) {
+            oneToTen = input.nextInt();
+
+            if (oneToTen == random) {
+                System.out.println("You have guessed the correct number! The number was: " + random);
+                break;
+            }
+        }
 
 
     }
