@@ -11,15 +11,18 @@ public class Main {
         int oneToTen = 0;
         int random = rand.nextInt(10) + 1;
         oneToTen = input.nextInt();
+
+        if (oneToTen == random) {
+            System.out.println("You have guessed the correct number! The number was: " + random);
+        }
+
         while(oneToTen != random) {
             oneToTen = input.nextInt();
 
             if (oneToTen == random) {
+                System.out.println("You have guessed the correct number! The number was: " + random);
                 break;
             }
-        }
-        if (oneToTen == random) {
-            System.out.println("You have guessed the correct number! The number was: " + random);
         }
 
 
