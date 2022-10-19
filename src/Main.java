@@ -36,19 +36,27 @@ public class Main {
                     switch(num) {
 
                         case 1: {
-                            System.exit(0);
+                            correctInput = true;
+                            newGame();
+                            break;
                         }
 
                         case 2: {
-
+                            correctInput = true;
+                            continueGame();
+                            break;
                         }
 
                         case 3: {
-
+                            correctInput = true;
+                            instructions();
+                            break;
                         }
 
                         case 4: {
-
+                            correctInput = true;
+                            exitGame();
+                            break;
                         }
                     }
             }
@@ -63,6 +71,56 @@ public class Main {
                 System.out.println("Incorrect input! Please input a number from 1-4.");
             }
         }
+
+    }
+
+    public static void newGame() {
+        System.out.println("New game Started!");
+        System.out.println("");
+
+        System.out.println("What is your character's name?");
+        String playerName = input.nextLine();
+
+        System.out.println("What country is your character from?");
+
+        System.out.println("1. Canada");
+        System.out.println("2. Australia");
+        System.out.println("3. United States of America");
+        System.out.println("4. Custom Country (Unoptimized)");
+
+        String playerCountry = "";
+
+        while(!playerCountry.equals("1") && !playerCountry.equals("2") && !playerCountry.equals("3") && !playerCountry.equals("4")) {
+            playerCountry  = input.nextLine();
+
+            switch (playerCountry) {
+
+                case "1" -> playerCountry = "Canada";
+
+                case "2" -> playerCountry = "Australia";
+
+                case "3" -> playerCountry = "United States of America";
+
+                case "4" -> {
+                    System.out.println("What country is your character from?");
+                    playerCountry = input.nextLine();
+                }
+
+            }
+        }
+        
+
+    }
+
+    public static void continueGame() {
+
+    }
+
+    public static void instructions() {
+        System.out.println("Instructions:");
+    }
+
+    public static void exitGame() {
 
     }
 
