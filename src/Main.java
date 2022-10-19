@@ -79,6 +79,7 @@ public class Main {
         System.out.println("");
 
         System.out.println("What is your character's name?");
+        input.nextLine();
         String playerName = input.nextLine();
 
         System.out.println("What country is your character from?");
@@ -90,24 +91,54 @@ public class Main {
 
         String playerCountry = "";
 
-        while(!playerCountry.equals("1") && !playerCountry.equals("2") && !playerCountry.equals("3") && !playerCountry.equals("4")) {
+        boolean countryChosen = false;
+
+        while(!countryChosen) {
             playerCountry  = input.nextLine();
 
             switch (playerCountry) {
 
-                case "1" -> playerCountry = "Canada";
+                case "1" -> {
+                    playerCountry = "Canada";
+                    Player player = new Player(0,playerCountry);
+                    countryChosen = true;
+                }
 
-                case "2" -> playerCountry = "Australia";
+                case "2" -> {
+                    playerCountry = "Australia";
+                    Player player = new Player(0,playerCountry);
+                    countryChosen = true;
+                }
 
-                case "3" -> playerCountry = "United States of America";
+                case "3" -> {
+                    playerCountry = "United States of America";
+                    Player player = new Player(0,playerCountry);
+                    countryChosen = true;
+                }
 
                 case "4" -> {
                     System.out.println("What country is your character from?");
                     playerCountry = input.nextLine();
+                    Player player = new Player(0,playerCountry);
+                    countryChosen = true;
                 }
 
             }
+
+            System.out.println("Country is set to: " + playerCountry + ". Are you sure?");
+
+            System.out.println("1. Yes");
+
+            System.out.println("2. No, change it");
+
+            int changeCountry = input.nextInt();
+
+            if(changeCountry == 2) {
+                countryChosen = false;
+            }
         }
+
+
         
 
     }
