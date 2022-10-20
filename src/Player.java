@@ -12,11 +12,14 @@ public class Player {
     int age;
 
     int money;
+
+    int happiness;
     String country;
 
     public Player(int yourAge, String yourCountry) {
         health = 100;
         age = yourAge;
+        happiness = 100;
         country = yourCountry;
         this.money = money;
 
@@ -64,5 +67,13 @@ public class Player {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public int getHappiness() {
+        return happiness;
+    }
+
+    public void setHappiness(int happiness) {
+        this.happiness = happiness;
     }
 }

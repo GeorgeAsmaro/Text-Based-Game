@@ -18,17 +18,19 @@ public class Main {
 
     public static void newGame() {
         System.out.println("New game Started!");
-        System.out.println("");
+        empty();
 
         System.out.println("What is your character's name?");
         input.nextLine();
         String playerName = input.nextLine();
 
-        System.out.println("");
+        empty();
         System.out.println("Your character's name is now set to: " + playerName);
-        System.out.println("");
+        empty();
 
         chooseCountry();
+
+        characterDescription();
 
 
         
@@ -36,23 +38,42 @@ public class Main {
     }
 
     public static void continueGame() {
-        System.out.println("No current save, what would you like to do?");
 
-        System.out.println("1. Back to main menu");
-        System.out.println("2. New Game");
-        System.out.println("3. Exit");
+        boolean correctInput = false;
 
-        int whatNext = input.nextInt();
+        while(!correctInput) {
+            try {
+                System.out.println("No current save, what would you like to do?");
 
-        if(whatNext == 1) {
-            mainMenu();
+                System.out.println("1. Back to main menu");
+                System.out.println("2. New Game");
+                System.out.println("3. Exit");
+
+                int whatNext = input.nextInt();
+
+                if(whatNext != 1 && whatNext != 2 && whatNext != 3) {
+                    System.out.println("Incorrect input! Please input a number from 1-3");
+                }
+
+                if(whatNext == 1) {
+                    mainMenu();
+                    correctInput = true;
+                }
+                else if(whatNext == 2) {
+                    newGame();
+                    correctInput = true;
+                }
+                else if (whatNext == 3) {
+                    exitGame();
+                    correctInput = true;
+                }
+
+            } catch(InputMismatchException exception) {
+                input.nextLine();
+                System.out.println("Incorrect input! Please input a number from 1-3");
+            }
         }
-        else if(whatNext == 2) {
-            newGame();
-        }
-        else if (whatNext == 3) {
-            exitGame();
-        }
+
 
     }
 
@@ -65,14 +86,14 @@ public class Main {
     }
 
     public static void mainMenu() {
-        System.out.println("");
+        empty();
         System.out.println("Start Menu");
-        System.out.println("");
+        empty();
         System.out.println("1. New Game");
         System.out.println("2. Continue Game");
         System.out.println("3. Instructions");
         System.out.println("4. Exit");
-        System.out.println("");
+        empty();
         System.out.println("Please input a number:");
 
         boolean correctInput = false;
@@ -242,6 +263,20 @@ public class Main {
         }
 
 
+    }
+
+    public static void characterDescription() {
+        //Character is a age year old born with a poor/wealthy/rich/middle-class family.
+        //They were born in a city/village/town called located in countryOrigin.
+        // (Gap to look nicer)
+        //Age: age (updates each time you age)
+        //Health: health (updates based on events that occur)
+        //Happiness: happiness (updates based on events that occur)
+        // (Gap to look nicer)
+    }
+
+    public static void empty() {
+        System.out.println("");
     }
 
 }
