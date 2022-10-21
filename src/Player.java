@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -16,11 +17,12 @@ public class Player {
     int happiness;
     String country;
 
-    public Player(int yourAge, String yourCountry) {
+    String city;
+
+    public Player(int yourAge) {
         health = 100;
         age = yourAge;
         happiness = 100;
-        country = yourCountry;
         this.money = money;
 
     }
@@ -75,5 +77,56 @@ public class Player {
 
     public void setHappiness(int happiness) {
         this.happiness = happiness;
+    }
+
+    public void playerCity() {
+        if(getCountry().equals("Canada")) {
+            int randomCity = rand.nextInt(10);
+
+            if(randomCity == 0) {
+                city = "Toronto";
+            }
+
+            if(randomCity == 1) {
+                city = "Montreal";
+            }
+
+            if(randomCity == 2) {
+                city = "Vancouver";
+            }
+
+            if(randomCity == 3) {
+                city = "Calgary";
+            }
+
+            if(randomCity == 4) {
+                city = "Edmonton";
+            }
+
+            if(randomCity == 5) {
+                city = "Ottawa";
+            }
+
+            if(randomCity == 6) {
+                city = "Winnipeg";
+            }
+
+            if(randomCity == 7) {
+                city = "Quebec City";
+            }
+
+            if(randomCity == 8) {
+                city = "Halifax";
+            }
+
+            if(randomCity == 9) {
+                city = "Victoria";
+            }
+        }
+    }
+
+    public String getCity() {
+        playerCity();
+        return city;
     }
 }

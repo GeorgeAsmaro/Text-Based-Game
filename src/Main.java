@@ -2,14 +2,13 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
-import java.lang.Exception;
-import java.util.Arrays;
 
 public class Main {
 
     static Scanner input = new Scanner(System.in);
     static Random rand = new Random();
     static ExceptionHandling  exceptionHandling = new ExceptionHandling();
+    static Player player = new Player(0);
 
     static boolean countryChosen = false;
     public static void main(String[] args) {
@@ -19,10 +18,11 @@ public class Main {
     public static void newGame() {
         System.out.println("New game Started!");
         empty();
-
         System.out.println("What is your character's name?");
         input.nextLine();
         String playerName = input.nextLine();
+
+        player.setName(playerName);
 
         empty();
         System.out.println("Your character's name is now set to: " + playerName);
@@ -79,6 +79,30 @@ public class Main {
 
     public static void instructions() {
         System.out.println("Instructions:");
+        boolean correctInput = false;
+
+        while(!correctInput) {
+            try {
+
+                empty();
+                System.out.println("1. Main Menu");
+
+                int next = input.nextInt();
+
+                if(next != 1) {
+                    System.out.println("Incorrect input! Please input a correct number");
+                }
+                else if(next == 1) {
+                    mainMenu();
+                    correctInput = true;
+                }
+
+            }
+            catch(InputMismatchException exception) {
+                System.out.println("Incorrect input! Please input a correct number");
+            }
+        }
+
     }
 
     public static void exitGame() {
@@ -166,7 +190,6 @@ public class Main {
 
                 case "1" -> {
                     playerCountry = "Canada";
-                    Player player = new Player(0,playerCountry);
 
                     System.out.println("Country is set to " + playerCountry + ". Are you sure?");
 
@@ -180,10 +203,16 @@ public class Main {
                         countryChosen = false;
                         chooseCountry();
                     }
-                    else {
+                    if(changeCountry == 1) {
                         countryChosen = true;
 
+                        player.setCountry(playerCountry);
+
                         System.out.println("Your character's country is now set to: " + playerCountry);
+                    }
+                    else {
+                        System.out.println("Invalid input");
+                        chooseCountry();
                     }
 
 
@@ -191,7 +220,6 @@ public class Main {
 
                 case "2" -> {
                     playerCountry = "Australia";
-                    Player player = new Player(0,playerCountry);
 
                     System.out.println("Country is set to " + playerCountry + ". Are you sure?");
 
@@ -205,16 +233,21 @@ public class Main {
                         countryChosen = false;
                         chooseCountry();
                     }
-                    else {
+                    if(changeCountry == 1) {
                         countryChosen = true;
 
+                        player.setCountry(playerCountry);
+
                         System.out.println("Your character's country is now set to: " + playerCountry);
+                    }
+                    else {
+                        System.out.println("Invalid input");
+                        chooseCountry();
                     }
                 }
 
                 case "3" -> {
                     playerCountry = "United States of America";
-                    Player player = new Player(0,playerCountry);
 
                     System.out.println("Country is set to " + playerCountry + ". Are you sure?");
 
@@ -228,17 +261,22 @@ public class Main {
                         countryChosen = false;
                         chooseCountry();
                     }
-                    else {
+                    if(changeCountry == 1) {
                         countryChosen = true;
 
+                        player.setCountry(playerCountry);
+
                         System.out.println("Your character's country is now set to: " + playerCountry);
+                    }
+                    else {
+                        System.out.println("Invalid input");
+                        chooseCountry();
                     }
                 }
 
                 case "4" -> {
                     System.out.println("What country is your character from?");
                     playerCountry = input.nextLine();
-                    Player player = new Player(0,playerCountry);
 
                     System.out.println("Country is set to " + playerCountry + ". Are you sure?");
 
@@ -252,17 +290,10 @@ public class Main {
                         countryChosen = false;
                         chooseCountry();
                     }
-                    else {
-                        countryChosen = true;
-
-                        System.out.println("Your character's country is now set to: " + playerCountry);
-                    }
                 }
 
             }
         }
-
-
     }
 
     public static void characterDescription() {
@@ -273,6 +304,16 @@ public class Main {
         //Health: health (updates based on events that occur)
         //Happiness: happiness (updates based on events that occur)
         // (Gap to look nicer)
+
+        empty();
+        System.out.println(player.getName() + " is a " + player.getAge() + " year old born with a _ family");
+        System.out.println("They were born in a _ called " + player.getCity() +  " located in " + player.getCountry());
+        empty();
+        System.out.println("Age: " + player.getAge());
+        System.out.println("Health: " + player.getHealth());
+        System.out.println("Happiness: " + player.getHappiness());
+        empty();
+
     }
 
     public static void empty() {
@@ -289,7 +330,6 @@ class ExceptionHandling {
     }
 
     public static void startProgram() {
-        System.out.println("End");
     }
 
 
