@@ -247,7 +247,7 @@ public class Main {
                 }
 
                 case "3" -> {
-                    playerCountry = "United States of America";
+                    playerCountry = "the United States of America";
 
                     System.out.println("Country is set to " + playerCountry + ". Are you sure?");
 
@@ -289,6 +289,15 @@ public class Main {
                     if(changeCountry == 2) {
                         countryChosen = false;
                         chooseCountry();
+                    }
+
+                    if(changeCountry == 1) {
+                        countryChosen = true;
+
+                        player.setCountry(playerCountry);
+
+                        System.out.println("Your character's country is now set to: " + playerCountry);
+
                     }
                 }
 

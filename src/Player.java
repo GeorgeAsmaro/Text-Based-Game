@@ -123,6 +123,138 @@ public class Player {
                 city = "Victoria";
             }
         }
+
+        else if(getCountry().equals("Australia")) {
+            int randomCity = rand.nextInt(10);
+
+            if(randomCity == 0) {
+                city = "Sydney";
+            }
+
+            if(randomCity == 1) {
+                city = "Melbourne";
+            }
+
+            if(randomCity == 2) {
+                city = "Brisbane";
+            }
+
+            if(randomCity == 3) {
+                city = "Perth";
+            }
+
+            if(randomCity == 4) {
+                city = "Adelaide";
+            }
+
+            if(randomCity == 5) {
+                city = "Hobart";
+            }
+
+            if(randomCity == 6) {
+                city = "Darwin";
+            }
+
+            if(randomCity == 7) {
+                city = "Ballarat";
+            }
+
+            if(randomCity == 8) {
+                city = "Bendigo";
+            }
+
+            if(randomCity == 9) {
+                city = "Bunbury";
+            }
+        }
+
+        else if(getCountry().equals("the United States of America")) {
+            int randomCity = rand.nextInt(10);
+
+            if(randomCity == 0) {
+                city = "New York";
+            }
+
+            if(randomCity == 1) {
+                city = "Los Angeles";
+            }
+
+            if(randomCity == 2) {
+                city = "Chicago";
+            }
+
+            if(randomCity == 3) {
+                city = "Houston";
+            }
+
+            if(randomCity == 4) {
+                city = "Phoenix";
+            }
+
+            if(randomCity == 5) {
+                city = "Dallas";
+            }
+
+            if(randomCity == 6) {
+                city = "Miami";
+            }
+
+            if(randomCity == 7) {
+                city = "Las Vegas";
+            }
+
+            if(randomCity == 8) {
+                city = "Seattle";
+            }
+
+            if(randomCity == 9) {
+                city = "Atlanta";
+            }
+        }
+
+        else {
+            int randomCity = rand.nextInt(10);
+
+            if(randomCity == 0) {
+                city = "Bilbao";
+            }
+
+            if(randomCity == 1) {
+                city = "Paris";
+            }
+
+            if(randomCity == 2) {
+                city = "Vaduz";
+            }
+
+            if(randomCity == 3) {
+                city = "Dublin";
+            }
+
+            if(randomCity == 4) {
+                city = "Warsaw";
+            }
+
+            if(randomCity == 5) {
+                city = "Berlin";
+            }
+
+            if(randomCity == 6) {
+                city = "Stockholm";
+            }
+
+            if(randomCity == 7) {
+                city = "Lisbon";
+            }
+
+            if(randomCity == 8) {
+                city = "Katowice";
+            }
+
+            if(randomCity == 9) {
+                city = "Frankfurt";
+            }
+        }
     }
 
     public String getCity() {
