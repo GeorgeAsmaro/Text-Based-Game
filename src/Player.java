@@ -294,12 +294,8 @@ public class Player {
             money = 1000;
         }
 
-        else if(getWealth().equals("middle-class")) {
-            money = 200;
-        }
-
         else {
-            money = 1;
+            money = 200;
         }
     }
 
@@ -311,4 +307,22 @@ public class Player {
         state = playerState;
         return state;
     }
+
+    public void getStatus() {
+
+        //Age: age (updates each time you age)
+        //Health: health (updates based on events that occur)
+        //Happiness: happiness (updates based on events that occur)
+        // (Gap to look nicer)
+
+        System.out.println("Age: " + this.getAge());
+        System.out.println("Health: " + this.getHealth());
+        System.out.println("Happiness: " + this.getHappiness());
+
+
+        this.startMoney();
+        System.out.println("Money: $" + this.getMoney());
+        System.out.println("");
+    }
+
 }

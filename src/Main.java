@@ -12,27 +12,23 @@ public class Main {
     static Player player = new Player(0);
 
     static boolean countryChosen = false;
-
-    static boolean skip1 = false;
     public static void main(String[] args) {
         mainMenu();
     }
 
     public static void newGame() throws InterruptedException {
-        if(!skip1) {
-            System.out.println("New game Started!");
-            empty();
-            System.out.println("What is your character's name?");
-            input.nextLine();
-            String playerName = input.nextLine();
 
-            player.setName(playerName);
+        System.out.println("New game Started!");
+        empty();
+        System.out.println("What is your character's name?");
+        input.nextLine();
+        String playerName = input.nextLine();
 
-            empty();
-            System.out.println("Your character's name is now set to: " + playerName);
-            empty();
+        player.setName(playerName);
 
-        }
+        empty();
+        System.out.println("Your character's name is now set to: " + playerName);
+        empty();
 
         chooseCountry();
 
@@ -41,26 +37,40 @@ public class Main {
         TimeUnit.SECONDS.sleep(1);
 
         System.out.println("1. Continue");
-        System.out.println("2. Back");
+        System.out.println("2. Back to main menu");
+        int continueGame = input.nextInt();
 
-        try {
-            int continueGame = input.nextInt();
+        while(!player.getState().equals("dead")) {
+            try {
 
-            if(continueGame == 1) {
-                System.out.println("1. Age");
-                System.out.println("2. Activities");
-                System.out.println("3. Status");
-                System.out.println("4. Inventory");
-                System.out.println("1.");
+                if(continueGame == 1) {
+                    System.out.println("1. Age");
+                    System.out.println("2. Activities");
+                    System.out.println("3. Status");
+                    System.out.println("4. Inventory");
+                    System.out.println("5. Back to main menu");
+
+                    int next = input.nextInt();
+
+                    if(next == 1) {
+                        player.setAge(player.getAge()+1);
+                        player.getStatus();
+
+                    }
+                    if(next == 5) {
+                        countryChosen = false;
+                        mainMenu();
+                    }
+                }
+                else if(continueGame == 2) {
+                    countryChosen = false;
+                    mainMenu();
+                }
             }
-            else if(continueGame == 2) {
-                countryChosen = false;
-                skip1 = true;
-                newGame();
+            catch(InputMismatchException exception) {
+                System.out.println("Invalid Input! Try Again");
             }
-        }
-        catch(InputMismatchException exception) {
-            System.out.println("Invalid Input! Try Again");
+
         }
 
 
@@ -145,7 +155,7 @@ public class Main {
 
     public static void mainMenu() {
         empty();
-        System.out.println("Start Menu");
+        System.out.println("Main Menu");
         empty();
         System.out.println("1. New Game");
         System.out.println("2. Continue Game");
@@ -337,21 +347,13 @@ public class Main {
         //Character is a age year old born with a poor/wealthy/rich/middle-class family.
         //They were born in a city/village/town called located in countryOrigin.
         // (Gap to look nicer)
-        //Age: age (updates each time you age)
-        //Health: health (updates based on events that occur)
-        //Happiness: happiness (updates based on events that occur)
-        // (Gap to look nicer)
 
         empty();
+        player.setAge(0);
         System.out.println(player.getName() + " is a " + player.getAge() + " year old born with a " + player.getWealth() + " family");
         System.out.println("They were born in a city called " + player.getCity() +  " located in " + player.getCountry());
         empty();
-        System.out.println("Age: " + player.getAge());
-        System.out.println("Health: " + player.getHealth());
-        System.out.println("Happiness: " + player.getHappiness());
-        player.startMoney();
-        System.out.println("Money: $" + player.getMoney());
-        empty();
+        player.getStatus();
 
     }
 
