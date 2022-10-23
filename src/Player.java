@@ -1,4 +1,3 @@
-import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -15,19 +14,23 @@ public class Player {
     int money;
 
     int happiness;
+
     String country;
 
     String city;
+
+    String wealthiness;
+
+    String state = "Alive";
 
     public Player(int yourAge) {
         health = 100;
         age = yourAge;
         happiness = 100;
-        this.money = money;
 
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
 
     }
 
@@ -257,8 +260,55 @@ public class Player {
         }
     }
 
+    public void wealth() {
+        int wealthy = rand.nextInt(3);
+
+        if(wealthy == 0) {
+            wealthiness = "poor";
+        }
+        else if(wealthy == 1) {
+            wealthiness = "middle-class";
+        }
+        else {
+            wealthiness = "wealthy";
+        }
+    }
+
+    public String getWealth() {
+        wealth();
+        return wealthiness;
+    }
+
     public String getCity() {
         playerCity();
         return city;
+    }
+
+    public void startMoney() {
+
+        if(getWealth().equals("poor")) {
+            money = 0;
+        }
+
+        else if(getWealth().equals("wealthy")) {
+            money = 1000;
+        }
+
+        else if(getWealth().equals("middle-class")) {
+            money = 200;
+        }
+
+        else {
+            money = 1;
+        }
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String setState(String playerState) {
+        state = playerState;
+        return state;
     }
 }

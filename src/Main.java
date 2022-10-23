@@ -2,6 +2,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -11,26 +12,56 @@ public class Main {
     static Player player = new Player(0);
 
     static boolean countryChosen = false;
+
+    static boolean skip1 = false;
     public static void main(String[] args) {
         mainMenu();
     }
 
-    public static void newGame() {
-        System.out.println("New game Started!");
-        empty();
-        System.out.println("What is your character's name?");
-        input.nextLine();
-        String playerName = input.nextLine();
+    public static void newGame() throws InterruptedException {
+        if(!skip1) {
+            System.out.println("New game Started!");
+            empty();
+            System.out.println("What is your character's name?");
+            input.nextLine();
+            String playerName = input.nextLine();
 
-        player.setName(playerName);
+            player.setName(playerName);
 
-        empty();
-        System.out.println("Your character's name is now set to: " + playerName);
-        empty();
+            empty();
+            System.out.println("Your character's name is now set to: " + playerName);
+            empty();
+
+        }
 
         chooseCountry();
 
         characterDescription();
+
+        TimeUnit.SECONDS.sleep(1);
+
+        System.out.println("1. Continue");
+        System.out.println("2. Back");
+
+        try {
+            int continueGame = input.nextInt();
+
+            if(continueGame == 1) {
+                System.out.println("1. Age");
+                System.out.println("2. Activities");
+                System.out.println("3. Status");
+                System.out.println("4. Inventory");
+                System.out.println("1.");
+            }
+            else if(continueGame == 2) {
+                countryChosen = false;
+                skip1 = true;
+                newGame();
+            }
+        }
+        catch(InputMismatchException exception) {
+            System.out.println("Invalid Input! Try Again");
+        }
 
 
         
@@ -71,6 +102,9 @@ public class Main {
             } catch(InputMismatchException exception) {
                 input.nextLine();
                 System.out.println("Incorrect input! Please input a number from 1-3");
+
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
 
@@ -131,30 +165,22 @@ public class Main {
                     System.out.println("Incorrect input! Please input a number from 1-4.");
                 }
 
-                switch(num) {
-
-                    case 1: {
+                switch (num) {
+                    case 1 -> {
                         correctInput = true;
                         newGame();
-                        break;
                     }
-
-                    case 2: {
+                    case 2 -> {
                         correctInput = true;
                         continueGame();
-                        break;
                     }
-
-                    case 3: {
+                    case 3 -> {
                         correctInput = true;
                         instructions();
-                        break;
                     }
-
-                    case 4: {
+                    case 4 -> {
                         correctInput = true;
                         exitGame();
-                        break;
                     }
                 }
             }
@@ -167,6 +193,8 @@ public class Main {
             catch(ArithmeticException exception) {
 
                 System.out.println("Incorrect input! Please input a number from 1-4.");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
 
@@ -180,7 +208,7 @@ public class Main {
         System.out.println("3. United States of America");
         System.out.println("4. Custom Country (Unoptimized)");
 
-        String playerCountry = "";
+        String playerCountry;
 
 
         while(!countryChosen) {
@@ -315,18 +343,26 @@ public class Main {
         // (Gap to look nicer)
 
         empty();
-        System.out.println(player.getName() + " is a " + player.getAge() + " year old born with a _ family");
-        System.out.println("They were born in a _ called " + player.getCity() +  " located in " + player.getCountry());
+        System.out.println(player.getName() + " is a " + player.getAge() + " year old born with a " + player.getWealth() + " family");
+        System.out.println("They were born in a city called " + player.getCity() +  " located in " + player.getCountry());
         empty();
         System.out.println("Age: " + player.getAge());
         System.out.println("Health: " + player.getHealth());
         System.out.println("Happiness: " + player.getHappiness());
+        player.startMoney();
+        System.out.println("Money: $" + player.getMoney());
         empty();
 
     }
 
     public static void empty() {
         System.out.println("");
+    }
+
+    public void mainGame() {
+        while(!player.getState().equals("dead")) {
+
+        }
     }
 
 }
