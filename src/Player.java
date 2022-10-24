@@ -11,6 +11,8 @@ public class Player {
     int health;
     int age;
 
+    boolean wealthChosen = false;
+
     int money;
 
     int happiness;
@@ -23,11 +25,12 @@ public class Player {
 
     String state = "Alive";
 
-    public Player(int yourAge) {
+    public Player() {
         health = 100;
-        age = yourAge;
+        age = 0;
         happiness = 100;
-        wealth();
+        //wealth();
+        this.wealthiness = getWealth();
     }
 
     public void main(String[] args) {
@@ -263,18 +266,33 @@ public class Player {
     private void wealth() {
         int wealthy = rand.nextInt(3);
 
-        if(wealthy == 0) {
-            wealthiness = "poor";
+        if (!wealthChosen) {
+            if(wealthy == 0) {
+                wealthiness = "poor";
+                wealthChosen = true;
+            }
+            else if(wealthy == 1) {
+                wealthiness = "middle-class";
+                wealthChosen = true;
+            }
+            else {
+                wealthiness = "wealthy";
+                wealthChosen = true;
+            }
         }
-        else if(wealthy == 1) {
-            wealthiness = "middle-class";
-        }
-        else {
-            wealthiness = "wealthy";
-        }
+
+    }
+
+    public void setTrue(boolean trueOrFalse) {
+        wealthChosen = trueOrFalse;
+    }
+
+    public boolean getTrue() {
+        return wealthChosen;
     }
 
     public String getWealth() {
+        wealth();
         return wealthiness;
     }
 
@@ -284,7 +302,6 @@ public class Player {
     }
 
     public void startMoney() {
-
         if(getWealth().equals("poor")) {
             this.setMoney(0);
         }
@@ -317,11 +334,14 @@ public class Player {
         System.out.println("Age: " + this.getAge());
         System.out.println("Health: " + this.getHealth());
         System.out.println("Happiness: " + this.getHappiness());
-        System.out.println("Wealth1: " + this.getWealth());
         startMoney();
 
         System.out.println("Money: $" + this.getMoney());
         System.out.println("");
+    }
+
+    public String getWealthiness() {
+        return wealthiness;
     }
 
 }

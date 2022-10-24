@@ -9,7 +9,7 @@ public class Main {
     static Scanner input = new Scanner(System.in);
     static Random rand = new Random();
     static ExceptionHandling  exceptionHandling = new ExceptionHandling();
-    static Player player = new Player(0);
+    static Player player = new Player();
 
     static boolean countryChosen = false;
     public static void main(String[] args) {
@@ -17,6 +17,8 @@ public class Main {
     }
 
     public static void newGame() throws InterruptedException {
+
+        player.setTrue(false);
 
         System.out.println("New game Started!");
         empty();
@@ -54,9 +56,24 @@ public class Main {
 
                     if(next == 1) {
                         player.setAge(player.getAge()+1);
-                        player.getStatus();
+
+                        int potentialDeath = rand.nextInt(50)+1;
+
+                        if(potentialDeath == 1) {
+                            player.setState("dead");
+                            playerDeath();
+                        }
+
+                        if(potentialDeath != 1) {
+                            //player.getStatus();
+                        }
 
                     }
+
+                    if(next == 3) {
+                        player.getStatus();
+                    }
+
                     if(next == 5) {
                         countryChosen = false;
                         mainMenu();
@@ -362,10 +379,36 @@ public class Main {
         System.out.println("");
     }
 
-    public void mainGame() {
-        while(!player.getState().equals("dead")) {
+    public static void playerDeath() throws InterruptedException {
+        try {
+            System.out.println("At the age of " + player.getAge() + ", " + player.getName() + " has passed away.");
+            System.out.println("Born and raised in " + player.getCity() + " in " + player.getCountry() + ", " + player.getName() + " was born into a " + player.getWealthiness() + " family.");
+            input.nextLine();
 
+
+            System.out.println("What would you like to do next?");
+
+            System.out.println("1. Retry");
+            System.out.println("2. Main Menu");
+
+            int whatNext = input.nextInt();
+
+            if(whatNext == 1) {
+                newGame();
+            }
+            else if(whatNext == 2) {
+                mainMenu();
+            }
+            else {
+                System.out.println("Invalid input! Try again");
+                playerDeath();
+            }
         }
+
+        catch(InputMismatchException exception) {
+            System.out.println("Invalid input! Try again");
+        }
+
     }
 
 }
