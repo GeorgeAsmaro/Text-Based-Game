@@ -350,6 +350,7 @@ public class Main {
 
         empty();
         player.setAge(0);
+
         System.out.println(player.getName() + " is a " + player.getAge() + " year old born with a " + player.getWealth() + " family");
         System.out.println("They were born in a city called " + player.getCity() +  " located in " + player.getCountry());
         empty();

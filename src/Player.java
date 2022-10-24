@@ -27,7 +27,7 @@ public class Player {
         health = 100;
         age = yourAge;
         happiness = 100;
-
+        wealth();
     }
 
     public void main(String[] args) {
@@ -260,7 +260,7 @@ public class Player {
         }
     }
 
-    public void wealth() {
+    private void wealth() {
         int wealthy = rand.nextInt(3);
 
         if(wealthy == 0) {
@@ -275,7 +275,6 @@ public class Player {
     }
 
     public String getWealth() {
-        wealth();
         return wealthiness;
     }
 
@@ -287,15 +286,15 @@ public class Player {
     public void startMoney() {
 
         if(getWealth().equals("poor")) {
-            money = 0;
+            this.setMoney(0);
         }
 
         else if(getWealth().equals("wealthy")) {
-            money = 1000;
+            this.setMoney(1000);
         }
 
         else {
-            money = 200;
+            this.setMoney(200);
         }
     }
 
@@ -318,9 +317,9 @@ public class Player {
         System.out.println("Age: " + this.getAge());
         System.out.println("Health: " + this.getHealth());
         System.out.println("Happiness: " + this.getHappiness());
+        System.out.println("Wealth1: " + this.getWealth());
+        startMoney();
 
-
-        this.startMoney();
         System.out.println("Money: $" + this.getMoney());
         System.out.println("");
     }
