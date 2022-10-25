@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
+    static boolean activityChosen = false;
 
     static Scanner input = new Scanner(System.in);
     static Random rand = new Random();
@@ -47,7 +48,9 @@ public class Main {
 
                 if(continueGame == 1) {
                     System.out.println("1. Age");
-                    System.out.println("2. Activities");
+                    if(!activityChosen) {
+                        System.out.println("2. Activities");
+                    }
                     System.out.println("3. Status");
                     System.out.println("4. Inventory");
                     System.out.println("5. Back to main menu");
@@ -56,6 +59,8 @@ public class Main {
 
                     if(next == 1) {
                         player.setAge(player.getAge()+1);
+
+                        activityChosen = false;
 
                         int potentialDeath = rand.nextInt(50)+1;
 
@@ -68,6 +73,11 @@ public class Main {
                             //player.getStatus();
                         }
 
+                    }
+
+                    if(next == 2 && !activityChosen) {
+                        player.activityPool();
+                        activityChosen = true;
                     }
 
                     if(next == 3) {

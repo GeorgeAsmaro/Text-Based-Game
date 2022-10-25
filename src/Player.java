@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -16,6 +17,16 @@ public class Player {
     int money;
 
     int happiness;
+
+    int intelligence = 0;
+
+    int kindness = 0;
+
+    int socialization = 0;
+
+    int athleticism = 0;
+
+    int artistic = 0;
 
     String country;
 
@@ -57,8 +68,9 @@ public class Player {
         return age;
     }
 
-    public void setAge(int age) {
+    public int setAge(int age) {
         this.age = age;
+        return age;
     }
 
     public int getMoney() {
@@ -344,4 +356,205 @@ public class Player {
         return wealthiness;
     }
 
+    public void activityPool() {
+        int pool = rand.nextInt(1)+1;
+        boolean activityComplete = false;
+        switch (pool) {
+            case 1 -> {
+                while(!activityComplete) {
+                    System.out.println("1. Create a twitter profile");
+                    System.out.println("2. Donate money to the homeless");
+                    System.out.println("3. Go to the library and read a book");
+                    System.out.println("4. Go on a walk at the park");
+                    System.out.println("5. Find a club to join");
+
+                    int nextActivity = input.nextInt();
+
+                    if(nextActivity == 1) {
+                        System.out.println("You go online and register for a twitter account. You set up your account and make a basic profile.");
+                        socialization++;
+                        activityComplete = true;
+
+                    }
+
+                    if(nextActivity == 2) {
+                        if(getMoney() > 0) {
+                            System.out.println("You donate $1 to a homeless man on the side of the road.");
+                            kindness++;
+                            activityComplete = true;
+                        }
+                        else if(getMoney()<= 0) {
+                            System.out.println("You don't have money to donate! You gave the homeless man on the side of the road counterfeit money.");
+                            kindness--;
+                            activityComplete = true;
+                        }
+                    }
+
+                    if(nextActivity == 3) {
+                        int whatBook = rand.nextInt(10);
+                        String book = "book";
+                        String author = "author";
+
+                        if(whatBook == 0) {
+                            book = "Don Quixote";
+                            author = "Miguel de Cervantes";
+                        }
+
+                        if(whatBook == 1) {
+                            book = "Moby Dick";
+                            author = "Herman Melville";
+                        }
+
+                        if(whatBook == 2) {
+                            book = "1984";
+                            author = "George Orwell";
+                        }
+
+                        if(whatBook == 3) {
+                            book = "The Odyssey";
+                            author = "Homer";
+                        }
+
+                        if(whatBook == 4) {
+                            book = "The Catcher in the Rye";
+                            author = "J. D. Salinger";
+                        }
+
+                        if(whatBook == 5) {
+                            book = "To Kill a Mockingbird";
+                            author = "Harper Lee";
+                        }
+
+                        if(whatBook == 6) {
+                            book = "The Hunger Games";
+                            author = "Suzanne Collins";
+                        }
+
+                        if(whatBook == 7) {
+                            book = "James and the Giant Peach";
+                            author = "Roald Dahl";
+                        }
+
+                        if(whatBook == 8) {
+                            book = "Animal Farm";
+                            author = "George Orwell";
+                        }
+
+                        if(whatBook == 9) {
+                            book = "The Godfather";
+                            author = "Mario Puzo";
+                        }
+                        System.out.println("You walked to the nearest library and found a book to read. The book you read was " + book + " by " + author);
+                        intelligence++;
+                        activityComplete = true;
+                    }
+
+                    if(nextActivity == 4) {
+                        System.out.println("You went to the nearest park and took a long walk along the path.");
+                        athleticism++;
+                        activityComplete = true;
+                    }
+
+                    if(nextActivity == 5) {
+                        boolean clubChosen = false;
+
+                        while(!clubChosen) {
+                            try {
+                                System.out.println("What club would you like to join?");
+                                System.out.println("");
+                                System.out.println("1. Basketball Club");
+                                System.out.println("2. Robotics Club");
+                                System.out.println("3. Book Club");
+                                System.out.println("4. Creative Writing Club");
+                                System.out.println("5. Animation Club");
+
+                                int club = input.nextInt();
+
+                                if(club == 1) {
+                                    System.out.println("You have joined the basketball club.");
+                                    athleticism++;
+                                    clubChosen = true;
+                                    activityComplete = true;
+                                }
+
+                                else if(club == 2) {
+                                    System.out.println("You have joined the robotics club.");
+                                    intelligence++;
+                                    clubChosen = true;
+                                    activityComplete = true;
+                                }
+
+                                else if(club == 3) {
+                                    System.out.println("You have joined the book club.");
+                                    intelligence++;
+                                    clubChosen = true;
+                                    activityComplete = true;
+                                }
+
+                                else if(club == 4) {
+                                    System.out.println("You have joined the creative writing club.");
+                                    artistic++;
+                                    clubChosen = true;
+                                    activityComplete = true;
+                                }
+
+                                else if(club == 5) {
+                                    System.out.println("You have joined the animation club.");
+                                    artistic++;
+                                    clubChosen = true;
+                                    activityComplete = true;
+                                }
+
+                                else {
+                                    System.out.println("Invalid Input. Try again.");
+                                }
+                            }
+                            catch(InputMismatchException exception) {
+                                System.out.println("Invalid Input. Try Again.");
+                            }
+                        }
+
+                    }
+                }
+            }
+            case 2 -> {
+
+
+            }
+            case 3 -> {
+
+
+            }
+            case 4 -> {
+
+
+            }
+            case 5 -> {
+
+
+            }
+            case 6 -> {
+
+
+            }
+            case 7 -> {
+
+            }
+            case 8 -> {
+
+
+            }
+            case 9 -> {
+
+            }
+            case 10 -> {
+
+
+            }
+            default -> {
+
+            }
+        }
+
+    }
 }
