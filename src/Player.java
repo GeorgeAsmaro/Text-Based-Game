@@ -28,6 +28,8 @@ public class Player {
 
     int artistic = 0;
 
+    String playerClub = "no club";
+
     String country;
 
     String city;
@@ -467,6 +469,7 @@ public class Player {
                                 System.out.println("3. Book Club");
                                 System.out.println("4. Creative Writing Club");
                                 System.out.println("5. Animation Club");
+                                System.out.println("6. Go back");
 
                                 int club = input.nextInt();
 
@@ -474,6 +477,7 @@ public class Player {
                                     System.out.println("You have joined the basketball club.");
                                     athleticism++;
                                     clubChosen = true;
+                                    playerClub = "basketball club";
                                     activityComplete = true;
                                 }
 
@@ -481,6 +485,7 @@ public class Player {
                                     System.out.println("You have joined the robotics club.");
                                     intelligence++;
                                     clubChosen = true;
+                                    playerClub = "robotics club";
                                     activityComplete = true;
                                 }
 
@@ -488,6 +493,7 @@ public class Player {
                                     System.out.println("You have joined the book club.");
                                     intelligence++;
                                     clubChosen = true;
+                                    playerClub = "book club";
                                     activityComplete = true;
                                 }
 
@@ -495,6 +501,7 @@ public class Player {
                                     System.out.println("You have joined the creative writing club.");
                                     artistic++;
                                     clubChosen = true;
+                                    playerClub = "creative writing club";
                                     activityComplete = true;
                                 }
 
@@ -502,7 +509,14 @@ public class Player {
                                     System.out.println("You have joined the animation club.");
                                     artistic++;
                                     clubChosen = true;
+                                    playerClub = "animation club";
                                     activityComplete = true;
+                                }
+
+                                else if(club == 6) {
+                                    System.out.println("You have joined " + playerClub + ".");
+                                    activityComplete = true;
+                                    clubChosen = true;
                                 }
 
                                 else {
