@@ -12,7 +12,11 @@ public class Player {
     int health;
     int age;
 
+    boolean moneySet = false;
+
     boolean wealthChosen = false;
+
+    boolean clubChosen = false;
 
     int money;
 
@@ -42,12 +46,21 @@ public class Player {
         health = 100;
         age = 0;
         happiness = 100;
-        //wealth();
-        this.wealthiness = getWealth();
+        wealth();
+        if(getWealthiness().equals("poor")) {
+            money = 0;
+        }
+        if(getWealthiness().equals("middle-class")) {
+            money = 200;
+        }
+        if(getWealthiness().equals("wealthy")) {
+            money = 1000;
+        }
+        money = getMoney();
+
     }
 
     public void main(String[] args) {
-
     }
 
     public String getName() {
@@ -315,18 +328,26 @@ public class Player {
         return city;
     }
 
-    public void startMoney() {
-        if(getWealth().equals("poor")) {
-            this.setMoney(0);
-        }
+    public int startMoney() {
 
-        else if(getWealth().equals("wealthy")) {
-            this.setMoney(1000);
-        }
+            if(getWealth().equals("poor")) {
+                return 0;
+                //setMoney(0);
 
-        else {
-            this.setMoney(200);
-        }
+            }
+
+            else if(getWealth().equals("wealthy")) {
+                //setMoney(1000);
+                return 1000;
+
+            }
+
+            else {
+                return 200;
+                //setMoney(200);
+
+            }
+
     }
 
     public String getState() {
@@ -350,7 +371,7 @@ public class Player {
         System.out.println("Happiness: " + this.getHappiness());
         startMoney();
 
-        System.out.println("Money: $" + this.getMoney());
+        System.out.println("Money: $" + money);
         System.out.println("");
     }
 
@@ -380,12 +401,28 @@ public class Player {
                     }
 
                     if(nextActivity == 2) {
-                        if(getMoney() > 0) {
-                            System.out.println("You donate $1 to a homeless man on the side of the road.");
+                        if(money > 0 && wealthiness.equals("wealthy")) {
+                            System.out.println("You donate $10 to a homeless man on the side of the road.");
                             kindness++;
+                            money -= 10;
                             activityComplete = true;
                         }
-                        else if(getMoney()<= 0) {
+
+                        else if(money > 0 && wealthiness.equals("middle-class")) {
+                            System.out.println("You donate $5 to a homeless man on the side of the road.");
+                            kindness++;
+                            money -= 5;
+                            activityComplete = true;
+                        }
+
+                        else if(money > 0 && wealthiness.equals("poor")) {
+                            System.out.println("You donate $1 to a homeless man on the side of the road.");
+                            kindness++;
+                            money -= 1;
+                            activityComplete = true;
+                        }
+
+                        else if(money <= 0) {
                             System.out.println("You don't have money to donate! You gave the homeless man on the side of the road counterfeit money.");
                             kindness--;
                             activityComplete = true;
@@ -457,8 +494,7 @@ public class Player {
                         activityComplete = true;
                     }
 
-                    if(nextActivity == 5) {
-                        boolean clubChosen = false;
+                    if(nextActivity == 5 && !clubChosen) {
 
                         while(!clubChosen) {
                             try {
@@ -515,8 +551,7 @@ public class Player {
 
                                 else if(club == 6) {
                                     System.out.println("You have joined " + playerClub + ".");
-                                    activityComplete = true;
-                                    clubChosen = true;
+                                    break;
                                 }
 
                                 else {
@@ -528,6 +563,12 @@ public class Player {
                             }
                         }
 
+
+
+                    }
+
+                    if(nextActivity == 5 && clubChosen && !activityComplete) {
+                            System.out.println("You have already joined a club!");
                     }
                 }
             }
@@ -569,6 +610,10 @@ public class Player {
 
             }
         }
+
+    }
+
+    public void getRandomDisease() {
 
     }
 }

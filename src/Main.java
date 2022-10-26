@@ -9,6 +9,7 @@ public class Main {
 
     static Scanner input = new Scanner(System.in);
     static Random rand = new Random();
+
     static ExceptionHandling  exceptionHandling = new ExceptionHandling();
     static Player player = new Player();
 
@@ -378,7 +379,7 @@ public class Main {
         empty();
         player.setAge(0);
 
-        System.out.println(player.getName() + " is a " + player.getAge() + " year old born with a " + player.getWealth() + " family");
+        System.out.println(player.getName() + " is a " + player.getAge() + " year old born with a " + player.getWealthiness() + " family");
         System.out.println("They were born in a city called " + player.getCity() +  " located in " + player.getCountry());
         empty();
         player.getStatus();
