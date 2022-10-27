@@ -48,9 +48,11 @@ public class Main {
 
                 if(continueGame == 1) {
                     System.out.println("1. Age");
+
                     if(!activityChosen) {
                         System.out.println("2. Activities");
                     }
+                    
                     System.out.println("3. Status");
                     System.out.println("4. Inventory");
                     System.out.println("5. Back to main menu");
