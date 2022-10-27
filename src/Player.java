@@ -12,7 +12,16 @@ public class Player {
     int health;
     int age;
 
+    boolean dead = false;
+
+    String disease = "none";
+
+    String deathReason;
+
     boolean wealthChosen = false;
+    boolean clubChosen = false;
+
+    String playerClub = "no club";
 
     int money;
 
@@ -27,8 +36,6 @@ public class Player {
     int athleticism = 0;
 
     int artistic = 0;
-
-    String playerClub = "no club";
 
     String country;
 
@@ -457,8 +464,8 @@ public class Player {
                         activityComplete = true;
                     }
 
-                    if(nextActivity == 5) {
-                        boolean clubChosen = false;
+                    if(nextActivity == 5 && !clubChosen) {
+
 
                         while(!clubChosen) {
                             try {
@@ -477,7 +484,7 @@ public class Player {
                                     System.out.println("You have joined the basketball club.");
                                     athleticism++;
                                     clubChosen = true;
-                                    playerClub = "basketball club";
+                                    playerClub = "the basketball club";
                                     activityComplete = true;
                                 }
 
@@ -485,7 +492,7 @@ public class Player {
                                     System.out.println("You have joined the robotics club.");
                                     intelligence++;
                                     clubChosen = true;
-                                    playerClub = "robotics club";
+                                    playerClub = "the robotics club";
                                     activityComplete = true;
                                 }
 
@@ -493,7 +500,7 @@ public class Player {
                                     System.out.println("You have joined the book club.");
                                     intelligence++;
                                     clubChosen = true;
-                                    playerClub = "book club";
+                                    playerClub = "the book club";
                                     activityComplete = true;
                                 }
 
@@ -501,7 +508,7 @@ public class Player {
                                     System.out.println("You have joined the creative writing club.");
                                     artistic++;
                                     clubChosen = true;
-                                    playerClub = "creative writing club";
+                                    playerClub = "the creative writing club";
                                     activityComplete = true;
                                 }
 
@@ -509,14 +516,13 @@ public class Player {
                                     System.out.println("You have joined the animation club.");
                                     artistic++;
                                     clubChosen = true;
-                                    playerClub = "animation club";
+                                    playerClub = "the animation club";
                                     activityComplete = true;
                                 }
 
                                 else if(club == 6) {
                                     System.out.println("You have joined " + playerClub + ".");
-                                    activityComplete = true;
-                                    clubChosen = true;
+                                    break;
                                 }
 
                                 else {
@@ -528,6 +534,10 @@ public class Player {
                             }
                         }
 
+                    }
+
+                    if(nextActivity == 5 && clubChosen && !activityComplete) {
+                        System.out.println("You have already joined a club!");
                     }
                 }
             }
@@ -570,5 +580,71 @@ public class Player {
             }
         }
 
+    }
+
+    public void getRandomDisease() {
+        int randomDisease = rand.nextInt(20);
+
+        switch(randomDisease) {
+            case 1 -> {
+                disease = "common cold";
+            }
+
+            case 2 -> {
+                disease = "flu";
+            }
+
+            case 3 -> {
+                disease = "COVID-19";
+            }
+
+            case 4 -> {
+                disease = "";
+            }
+
+            case 5 -> {
+
+            }
+
+            case 6 -> {
+
+            }
+
+            case 7 -> {
+
+            }
+
+            case 8 -> {
+
+            }
+
+            case 9 -> {
+
+            }
+
+            case 10 -> {
+
+            }
+        }
+    }
+
+    public void randomDeathReason() {
+
+    }
+
+    public String getDeathReason() {
+        return deathReason;
+    }
+
+    public String setDeathReason(String reason) {
+        return deathReason = reason;
+    }
+
+    public boolean getDeath() {
+        return dead;
+    }
+
+    public boolean setDeath(boolean deadOrAlive) {
+        return dead = deadOrAlive;
     }
 }
