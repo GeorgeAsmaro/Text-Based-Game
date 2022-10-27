@@ -12,6 +12,7 @@ public class Player {
     int health;
     int age;
 
+    boolean twitterMade = false;
     boolean dead = false;
 
     String disease = "none";
@@ -380,8 +381,16 @@ public class Player {
                     int nextActivity = input.nextInt();
 
                     if(nextActivity == 1) {
-                        System.out.println("You go online and register for a twitter account. You set up your account and make a basic profile.");
+
+                        if(!twitterMade) {
+                            System.out.println("You go online and register for a twitter account. You set up your account and make a basic profile.");
+                        }
+
+                        if(twitterMade) {
+                            System.out.println("For some reason, even though you already had a twitter account, you decided to make another account...");
+                        }
                         socialization++;
+                        twitterMade = true;
                         activityComplete = true;
 
                     }
