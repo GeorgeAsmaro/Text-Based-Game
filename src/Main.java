@@ -406,9 +406,13 @@ public class Main {
             int whatNext = input.nextInt();
 
             if(whatNext == 1) {
+                countryChosen = false;
+                player.setState("Alive");
                 newGame();
             }
             else if(whatNext == 2) {
+                countryChosen = false;
+                player.setState("Alive");
                 mainMenu();
             }
             else {
